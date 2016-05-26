@@ -7,10 +7,10 @@ import os
 
 def CaptureImages() :
     #load mqtt service
-    #videoClient = mqtt.Client()
-    #videoClient.reinitialise(client_id = "Camera", clean_session = True, userdata = None)
-    #videoClient.connect("139.217.26.207", port = 1883, keepalive = 60, bind_address = "")
-    #videoClient.loop_start()
+    videoClient = mqtt.Client()
+    videoClient.reinitialise(client_id = "Camera", clean_session = True, userdata = None)
+    videoClient.connect("139.217.26.207", port = 1883, keepalive = 60, bind_address = "")
+    videoClient.loop_start()
 
     #prepare the send buffer
     output = StringIO.StringIO()
@@ -18,10 +18,9 @@ def CaptureImages() :
     camera = Camera()
     while True:
         image = camera.getImage()
-        #image.save(output)
-        image.save("hello.jpg")
-        #videoClient.publish("Video", base64.b64decode(output.getvalue()))
-        time.sleep(5)
+        image.save(output)
+        videoClient.publish("Video", base64.b64decode(output.getvalue()))
+        time.sleep(.05)
 
 class Recover(object):
     def __init__(self, pid) :
