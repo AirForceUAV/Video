@@ -21,6 +21,9 @@ A simple example can be found from [http://softwarerecs.stackexchange.com/questi
 Type this command in terminal:
 ```shell
 $ sudo apt-get install python-opencv
+$ sudo apt-get install python-pygame
+$ sudo apt-get install python-scipy
+$ sudo pip install simplecv
 ```
 Python test code:
 ```python
